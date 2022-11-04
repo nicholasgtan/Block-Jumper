@@ -1,5 +1,7 @@
 body {
   background-color: black;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -12,23 +14,21 @@ h2 {
   text-align: center;
 }
 
-#app {
-  height: 400px;
-  width: 600px;
-  background-color: slategrey;
-  margin: 0 auto;
-  display: flex;
+canvas {
+  background-color: slategray;
+  border: 2px solid white;
+  align-self: center;
 }
 
-#score {
-  color: white;
-  margin: 10px 10px;
-}
+/* #score { */
+/* color: white; */
+/* margin: 10px 10px; */
+/* } */
 
-#player {
-  background-color: rebeccapurple;
-  height: 35px;
-  width: 35px;
-  align-self: flex-end;
-  margin: 0 0 0 5px;
-}
+/* #player { */
+/* background-color: #663399; */
+/* height: 35px; */
+/* width: 35px; */
+/* align-self: flex-end; */
+/* margin: 0 0 0 5px; */
+/* } */
