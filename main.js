@@ -15,6 +15,7 @@ $(() => {
   const startGame = () => {
     gameCanvas.start();
     player.draw();
+    block.draw();
   };
   // Data
   // 1. game screen and render
@@ -35,7 +36,7 @@ $(() => {
     height: 30,
     x: 10,
     y: playerYPosition,
-
+    // draw player on canvas
     draw: () => {
       let ctx = gameCanvas.context;
       ctx.fillStyle = player.color;
@@ -64,11 +65,27 @@ $(() => {
       }
     },
   };
+  // 3. obstacle blocks with location moving toward player
+
+  const block = {
+    color: "yellow",
+    width: 30,
+    height: 200,
+    x: 570,
+
+    draw: () => {
+      block.y = canvasHeight - block.height;
+      let ctx = gameCanvas.context;
+      ctx.fillStyle = block.color;
+      ctx.fillRect(block.x, block.y, block.width, block.height);
+    },
+  };
 
   const resetJump = () => {
     isJumping = false;
     jumpSpeed = 0;
   };
+
   //render function
   const updateCanvas = () => {
     let ctx = gameCanvas.context;
@@ -76,10 +93,10 @@ $(() => {
     player.makeFall();
     player.draw();
     player.jump();
+    block.draw();
   };
 
   setInterval(updateCanvas, 20);
-  // 3. obstacle blocks with location moving toward player
 
   // 4. obstacle reaching end
   // 5. collision between player and obstacle
