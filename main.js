@@ -5,13 +5,12 @@ $(() => {
   let canvasWidth = 600;
   let canvasHeight = 400;
 
-  let player = {};
   let playerYPosition = 200;
+  let fallSpeed = 0;
 
   const startGame = () => {
     gameCanvas.start();
-    player = new createPlayer();
-    console.log(player);
+    player.draw();
   };
   // Data
   // 1. game screen and render
@@ -26,19 +25,49 @@ $(() => {
   };
 
   // 2. player on game screen
-  function createPlayer() {
-    player.width = 30;
-    player.height = 30;
-    player.x = 10;
-    player.y = playerYPosition;
+  const player = {
+    color: "#663399",
+    width: 30,
+    height: 30,
+    x: 10,
+    y: playerYPosition,
+
+    draw: () => {
+      let ctx = gameCanvas.context;
+      ctx.fillStyle = player.color;
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+    },
+    makeFall: () => {
+      player.y += fallSpeed;
+      fallSpeed += 0.1;
+      player.stopPlayer();
+    },
+    stopPlayer: () => {
+      let ground = canvasHeight - player.height;
+      if (player.y > ground) {
+        player.y = ground;
+      }
+    },
+  };
+
+  //render function
+  const updateCanvas = () => {
     let ctx = gameCanvas.context;
-    ctx.fillStyle = "#663399";
-    ctx.fillRect(player.x, player.y, player.width, player.height);
-  }
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    player.makeFall();
+    player.draw();
+  };
+  setInterval(updateCanvas, 20);
 
   // 3. obstacle blocks with location moving toward player
   // 4. obstacle reaching end
   // 5. collision between player and obstacle
+
+  //Jquery hotkeys
+  //https://github.com/tzuryby/jquery.hotkeys/blob/master/jquery.hotkeys.js
+  $(document).bind("keydown", "space", function () {
+    console.log("space pressed");
+  });
 
   startGame();
 });
