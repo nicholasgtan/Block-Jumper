@@ -31,7 +31,7 @@ $(() => {
 
   // 2. player on game screen
   const player = {
-    color: "#663399",
+    color: "#bc13fe",
     width: 30,
     height: 30,
     x: 10,
@@ -66,12 +66,16 @@ $(() => {
     },
   };
   // 3. obstacle blocks with location moving toward player
-
+  // random numbers function between min and max to control obstacle size randomness
+  //https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+  const randomNum = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
   const block = {
-    color: "yellow",
-    width: 30,
-    height: 200,
-    x: 570,
+    color: "#cfff04",
+    width: randomNum(10, 50),
+    height: randomNum(15, 200),
+    x: 500, //TODO need to change to canvasWidth so obstacle starts outside of screen
 
     draw: () => {
       block.y = canvasHeight - block.height;
