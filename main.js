@@ -28,6 +28,10 @@ $(() => {
       gameCanvas.context = gameCanvas.canvas.get(0).getContext("2d");
       gameCanvas.canvas.insertAfter($("h1"));
     },
+    stop: () => {
+      isJumping = false;
+      gameRun = false;
+    },
   };
 
   // 2. player on game screen
@@ -90,17 +94,19 @@ $(() => {
     attack: () => {
       if (gameRun === true) {
         block.x = canvasWidth - block.speed;
-        block.speed += randomNum(4, 10); // can try varying speed later?
+        block.speed += 4; // can try varying speed later?
         block.returnToStart();
       }
     },
+    // 4. obstacle reaching end
     // function to reset obstacle when it reaches end.
     returnToStart: () => {
       if (block.x < 0) {
         block.width = randomNum(10, 50);
         block.height = randomNum(15, 200);
         block.x = canvasWidth;
-        block.speed = randomNum(4, 10);
+        block.speed = randomNum(4, 6);
+        console.log(block.speed);
       }
     },
   };
@@ -110,21 +116,32 @@ $(() => {
     jumpSpeed = 0;
   };
 
+  // 5. collision between player and obstacle
+  const detectCollision = () => {
+    // player hits obstacle from the side
+    let playerRight = player.x + player.width;
+    let blockLeft = block.x;
+    // player hits obstacle from top
+    let playerBot = player.y + player.height;
+    let blockTop = block.y;
+    if (playerRight > blockLeft && playerBot > blockTop) {
+      gameCanvas.stop();
+    }
+  };
+
   //render function
   const updateCanvas = () => {
+    detectCollision();
     let ctx = gameCanvas.context;
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     player.makeFall();
     player.draw();
     player.jump();
-    block.attack();
     block.draw();
+    block.attack();
   };
 
   setInterval(updateCanvas, 20);
-
-  // 4. obstacle reaching end
-  // 5. collision between player and obstacle
 
   //Jquery hotkeys
   //https://github.com/tzuryby/jquery.hotkeys/blob/master/jquery.hotkeys.js
