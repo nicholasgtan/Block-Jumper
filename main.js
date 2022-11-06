@@ -17,6 +17,7 @@ $(() => {
     gameCanvas.start();
     player.draw();
     block.draw();
+    scoreTag.draw();
   };
   // Data
   // 1. game screen and render
@@ -31,6 +32,8 @@ $(() => {
     stop: () => {
       isJumping = false;
       gameRun = false;
+      gameOver.color = "#fe019a";
+      tryAgain.color = "#fe4164";
     },
   };
 
@@ -107,6 +110,7 @@ $(() => {
         block.x = canvasWidth;
         block.speed = randomNum(4, 6);
         console.log(block.speed);
+        scoreTag.score++;
       }
     },
   };
@@ -129,6 +133,44 @@ $(() => {
     }
   };
 
+  // 6. Score
+  const scoreTag = {
+    score: 0,
+    x: 480,
+    y: 30,
+    color: "#4efd54",
+    draw: () => {
+      let ctx = gameCanvas.context;
+      ctx.font = "20px Monospace";
+      ctx.fillStyle = scoreTag.color;
+      ctx.fillText(scoreTag.text, scoreTag.x, scoreTag.y);
+    },
+  };
+
+  const gameOver = {
+    x: 175,
+    y: 150,
+    color: "black",
+    draw: () => {
+      let ctx = gameCanvas.context;
+      ctx.font = "50px Monospace";
+      ctx.fillStyle = gameOver.color;
+      ctx.fillText("GAME OVER", gameOver.x, gameOver.y);
+    },
+  };
+
+  const tryAgain = {
+    x: 177,
+    y: 185,
+    color: "black",
+    draw: () => {
+      let ctx = gameCanvas.context;
+      ctx.font = "25px Monospace";
+      ctx.fillStyle = tryAgain.color;
+      ctx.fillText("Jump to try again!", tryAgain.x, tryAgain.y);
+    },
+  };
+
   //render function
   const updateCanvas = () => {
     detectCollision();
@@ -139,6 +181,10 @@ $(() => {
     player.jump();
     block.draw();
     block.attack();
+    scoreTag.text = "SCORE: " + scoreTag.score;
+    scoreTag.draw();
+    gameOver.draw();
+    tryAgain.draw();
   };
 
   setInterval(updateCanvas, 20);
@@ -149,7 +195,7 @@ $(() => {
   const spaceButton = $(document).on("keydown", function (e) {
     if (e.keyCode === 32) {
       isJumping = true;
-      setTimeout(resetJump, 999);
+      setTimeout(resetJump, 950);
     }
   });
 
