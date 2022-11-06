@@ -10,6 +10,7 @@ $(() => {
   let fallSpeed = 0;
 
   let isJumping = false;
+  let gameRun = false;
   let jumpSpeed = 0;
 
   const startGame = () => {
@@ -62,6 +63,7 @@ $(() => {
       if (isJumping === true) {
         player.y -= jumpSpeed;
         jumpSpeed += 0.3;
+        gameRun = true; //boolean to allow game to continue when player first jumps
       }
     },
   };
@@ -75,13 +77,31 @@ $(() => {
     color: "#cfff04",
     width: randomNum(10, 50),
     height: randomNum(15, 200),
-    x: 500, //TODO need to change to canvasWidth so obstacle starts outside of screen
+    x: canvasWidth,
+    speed: 0,
 
     draw: () => {
       block.y = canvasHeight - block.height;
       let ctx = gameCanvas.context;
       ctx.fillStyle = block.color;
       ctx.fillRect(block.x, block.y, block.width, block.height);
+    },
+    // function for obstacle to move towards player.
+    attack: () => {
+      if (gameRun === true) {
+        block.x = canvasWidth - block.speed;
+        block.speed += randomNum(4, 10); // can try varying speed later?
+        block.returnToStart();
+      }
+    },
+    // function to reset obstacle when it reaches end.
+    returnToStart: () => {
+      if (block.x < 0) {
+        block.width = randomNum(10, 50);
+        block.height = randomNum(15, 200);
+        block.x = canvasWidth;
+        block.speed = randomNum(4, 10);
+      }
     },
   };
 
@@ -97,6 +117,7 @@ $(() => {
     player.makeFall();
     player.draw();
     player.jump();
+    block.attack();
     block.draw();
   };
 
