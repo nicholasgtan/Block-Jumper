@@ -33,13 +33,13 @@ $(() => {
       isJumping = false;
       gameRun = false;
       gameOver.color = "#fe019a";
-      tryAgain.color = "#fe4164";
+      tryAgain.color = "#fe019a";
     },
   };
 
   // 2. player on game screen
   const player = {
-    color: "#bc13fe",
+    color: "#7913fe",
     width: 30,
     height: 30,
     x: 10,
@@ -138,7 +138,7 @@ $(() => {
     score: 0,
     x: 480,
     y: 30,
-    color: "#4efd54",
+    color: "white",
     draw: () => {
       let ctx = gameCanvas.context;
       ctx.font = "20px Monospace";
@@ -193,11 +193,14 @@ $(() => {
   //https://github.com/tzuryby/jquery.hotkeys/blob/master/jquery.hotkeys.js
 
   const spaceButton = $(document).on("keydown", function (e) {
-    if (e.keyCode === 32) {
+    if (e.keyCode === 32 && gameOver.color === "black") {
       isJumping = true;
       setTimeout(resetJump, 950);
+    } else if (e.keyCode === 32) {
+      location.reload();
     }
   });
 
   startGame();
 });
+// Resources: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D

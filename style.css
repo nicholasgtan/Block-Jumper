@@ -5,13 +5,20 @@ body {
 }
 
 h1 {
-  color: white;
+  color: #7913fe;
   text-align: center;
+  font-family: monospace;
+  font-size: 45px;
+}
+
+span {
+  color: #cfff04;
 }
 
 h2 {
   color: white;
   text-align: center;
+  font-family: monospace;
 }
 
 canvas {
@@ -19,16 +26,3 @@ canvas {
   border: 2px solid white;
   align-self: center;
 }
-
-/* #score { */
-/* color: white; */
-/* margin: 10px 10px; */
-/* } */
-
-/* #player { */
-/* background-color: #663399; */
-/* height: 35px; */
-/* width: 35px; */
-/* align-self: flex-end; */
-/* margin: 0 0 0 5px; */
-/* } */
