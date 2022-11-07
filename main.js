@@ -136,36 +136,36 @@ const detectCollision = () => {
 // 6. Score
 const scoreTag = {
   score: 0,
-  x: 480,
+  x: 465,
   y: 30,
   color: "white",
   draw: () => {
     let ctx = gameCanvas.context;
-    ctx.font = "20px Monospace";
+    ctx.font = "12px 'Press Start 2P'";
     ctx.fillStyle = scoreTag.color;
     ctx.fillText(scoreTag.text, scoreTag.x, scoreTag.y);
   },
 };
 
 const gameOver = {
-  x: 175,
+  x: 100,
   y: 150,
   color: "black",
   draw: () => {
     let ctx = gameCanvas.context;
-    ctx.font = "50px Monospace";
+    ctx.font = "45px 'Press Start 2P'";
     ctx.fillStyle = gameOver.color;
     ctx.fillText("GAME OVER", gameOver.x, gameOver.y);
   },
 };
 
 const tryAgain = {
-  x: 177,
+  x: 143,
   y: 185,
   color: "black",
   draw: () => {
     let ctx = gameCanvas.context;
-    ctx.font = "25px Monospace";
+    ctx.font = "18px 'Press Start 2P'";
     ctx.fillStyle = tryAgain.color;
     ctx.fillText("Jump to try again!", tryAgain.x, tryAgain.y);
   },
