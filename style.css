@@ -53,6 +53,7 @@ canvas {
   animation-iteration-count: infinite;
   animation-duration: 3s;
   animation-direction: alternate;
+  color: #7913fe;
 }
 
 @keyframes fade{
