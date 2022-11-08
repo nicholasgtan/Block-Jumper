@@ -5,7 +5,7 @@ Yellow block people are attacking Purple jumpers! Purple jumpers are peace lovin
 <br />
 
 ## Controls:
-Tap space to jump!
+Tap space or mouse click to jump!
 Jumping will start the game on load and will also reload the game when Game Over.
 ** TIP: Don't spam jump!
 <br />

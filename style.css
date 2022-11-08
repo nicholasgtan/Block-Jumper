@@ -2,6 +2,7 @@ body {
   background-color: black;
   display: flex;
   flex-direction: column;
+  color: white;
 }
 
 h1 {
@@ -9,21 +10,56 @@ h1 {
   text-align: center;
   font-family: 'Press Start 2P';
   font-size: 45px;
+  }
+
+div {
+  color:#cfff04;
 }
 
 span {
-  color: #cfff04;
-}
+  color: #cfff04; 
+  }
 
 h2 {
   color: white;
-  text-align: center;
+  /* text-align: center; */
   font-family: 'Press Start 2P';
   font-size: 18px;
+  display: flex;
+  justify-content: center;
 }
 
 canvas {
   background-color: black;
   border: 2px solid white;
   align-self: center;
+}
+
+.blink{
+  position: absolute;
+}
+.blink:nth-child(1){
+  animation-name: fade;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  animation-direction: alternate-reverse;  
+}
+
+
+.blink:nth-child(2){
+  animation-name: fade;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  animation-direction: alternate;
+}
+
+@keyframes fade{
+    0%,50% {
+      opacity: 0;
+}
+    100%{
+      opacity: 1;
+  }
 }

@@ -201,6 +201,15 @@ const spaceButton = $(document).on("keydown", function (e) {
   }
 });
 
+const mouseClick = $(document).on("click", function () {
+  if (gameOver.color === "black") {
+    isJumping = true;
+    setTimeout(resetJump, 950);
+  } else {
+    location.reload();
+  }
+});
+
 startGame();
 // });
 // Resources: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
