@@ -1,7 +1,3 @@
-// import "./style.css";
-// import $ from "jquery";
-
-// $(() => {
 let canvasWidth = 600;
 let canvasHeight = 400;
 
@@ -211,5 +207,3 @@ const mouseClick = $(document).on("click", function () {
 });
 
 startGame();
-// });
-// Resources: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D

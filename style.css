@@ -8,22 +8,22 @@ body {
 h1 {
   color: #7913fe;
   text-align: center;
-  font-family: 'Press Start 2P';
+  font-family: "Press Start 2P";
   font-size: 45px;
-  }
+}
 
 div {
-  color:#cfff04;
+  color: #cfff04;
 }
 
 span {
-  color: #cfff04; 
-  }
+  color: #cfff04;
+}
 
 h2 {
   color: white;
   /* text-align: center; */
-  font-family: 'Press Start 2P';
+  font-family: "Press Start 2P";
   font-size: 18px;
   display: flex;
   justify-content: center;
@@ -34,20 +34,19 @@ canvas {
   border: 2px solid white;
   align-self: center;
 }
-
-.blink{
+/* https://stackoverflow.com/questions/17254442/how-to-fade-in-out-multiple-texts-using-css-jquery-like-on-droplr */
+.blink {
   position: absolute;
 }
-.blink:nth-child(1){
+.blink:nth-child(1) {
   animation-name: fade;
   animation-fill-mode: both;
   animation-iteration-count: infinite;
   animation-duration: 3s;
-  animation-direction: alternate-reverse;  
+  animation-direction: alternate-reverse;
 }
 
-
-.blink:nth-child(2){
+.blink:nth-child(2) {
   animation-name: fade;
   animation-fill-mode: both;
   animation-iteration-count: infinite;
@@ -56,11 +55,12 @@ canvas {
   color: #7913fe;
 }
 
-@keyframes fade{
-    0%,50% {
-      opacity: 0;
-}
-    100%{
-      opacity: 1;
+@keyframes fade {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
